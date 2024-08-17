@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SliderController : MonoBehaviour
@@ -14,6 +15,8 @@ public class SliderController : MonoBehaviour
     public float MIN_PITCH = 0.8f;
     public float MAX_PITCH = 1.2f;
 
+
+    [SerializeField] public UnityEvent<int> OnSliderChange;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +44,7 @@ public class SliderController : MonoBehaviour
 
     void OnSliderValueChanged(float newValue)
     {
-        Debug.Log(newValue);
+        OnSliderChange.Invoke((int)newValue);
         PlaySound((int)newValue);
     }
 

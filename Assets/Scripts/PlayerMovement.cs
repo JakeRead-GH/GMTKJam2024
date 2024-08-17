@@ -6,9 +6,13 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
+
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -17,12 +21,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
+            animator.SetBool("Moving", true);
             transform.Translate(new Vector3(0.006f, 0, 0), Space.World);
+            GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
+            animator.SetBool("Moving", true);
             transform.Translate(new Vector3(-0.006f, 0, 0), Space.World);
+            GetComponent<SpriteRenderer>().flipX = true;
         }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(new Vector3(0, 4f, 0), ForceMode.Impulse);
