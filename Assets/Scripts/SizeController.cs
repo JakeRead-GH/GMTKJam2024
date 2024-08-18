@@ -2,14 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSizeController : MonoBehaviour
+public class SizeController : MonoBehaviour
 {
     private Animator animator;
+    private BoxCollider collider;
+
+    public float[] SCALE_X = new float[5], SCALE_Y = new float[5];
+    public float[] POS_X = new float[5], POS_Y = new float[5];
+    private float startingXScale, startingYScale;
+    private float startingXPos, startingYPos;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        collider = GetComponent<BoxCollider>();
+
+        startingXScale = collider.size.x;
+        startingYScale = collider.size.y;
+
+        startingXPos = collider.center.x;
+        startingYPos = collider.center.y;
     }
 
     // Update is called once per frame
@@ -40,30 +53,8 @@ public class PlayerSizeController : MonoBehaviour
 
     public void ChangeSize(int newSize)
     {
-        BoxCollider collider = GetComponent<BoxCollider>();
-
         animator.SetInteger("Size", newSize);
-        switch (newSize)
-        {
-            case 1:
-                collider.size = new Vector3(collider.size.x, 0.53f, collider.size.z);
-                break;
-            case 2:
-                collider.size = new Vector3(collider.size.x, 0.73f, collider.size.z);
-                break;
-            case 3:
-                collider.size = new Vector3(collider.size.x, 1.3f, collider.size.z);
-                break;
-            case 4:
-                collider.size = new Vector3(collider.size.x, 2.35f, collider.size.z);
-                break;
-            case 5:
-                collider.size = new Vector3(collider.size.x, 3.52f, collider.size.z);
-                break;
-
-        }
-
-
-        //GetComponent<Transform>().localScale += new Vector3(1, 0, 1);
+        collider.size = new Vector3(startingXScale + SCALE_X[newSize - 1], startingYScale + SCALE_Y[newSize - 1], collider.size.z);
+        collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
     }
 }
