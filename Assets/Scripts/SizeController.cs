@@ -6,6 +6,11 @@ public class SizeController : MonoBehaviour
 {
     private Animator animator;
     private BoxCollider collider;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody rb;
+
+    public Sprite[] sprites = new Sprite[5];
+    public float[] masses = new float[5];
 
     public float[] SCALE_X = new float[5], SCALE_Y = new float[5];
     public float[] POS_X = new float[5], POS_Y = new float[5];
@@ -17,12 +22,17 @@ public class SizeController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
+        
+        if (collider != null)
+        {
+            startingXScale = collider.size.x;
+            startingYScale = collider.size.y;
 
-        startingXScale = collider.size.x;
-        startingYScale = collider.size.y;
-
-        startingXPos = collider.center.x;
-        startingYPos = collider.center.y;
+            startingXPos = collider.center.x;
+            startingYPos = collider.center.y;
+        }
     }
 
     // Update is called once per frame
@@ -53,8 +63,42 @@ public class SizeController : MonoBehaviour
 
     public void ChangeSize(int newSize)
     {
-        animator.SetInteger("Size", newSize);
-        collider.size = new Vector3(startingXScale + SCALE_X[newSize - 1], startingYScale + SCALE_Y[newSize - 1], collider.size.z);
-        collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
+        if (animator != null)
+        {
+            animator.SetInteger("Size", newSize);
+        }
+        else
+        {
+            spriteRenderer.sprite = sprites[newSize - 1];
+        }
+
+        if (rb != null)
+        {
+            rb.mass = masses[newSize - 1];
+        }
+
+        if (collider != null)
+        {
+            Vector3 targetSize = new Vector3(startingXScale + SCALE_X[newSize - 1], startingYScale + SCALE_Y[newSize - 1], collider.size.z);
+
+            StartCoroutine(
+                    SmoothColliderScaling(collider.size, targetSize, 0.25f));
+
+            collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
+        }
+    }
+
+    IEnumerator SmoothColliderScaling(Vector3 initialSize, Vector3 targetSize, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            collider.size = Vector3.Lerp(initialSize, targetSize, elapsedTime / duration);
+            yield return null;
+        }
+
+        collider.size = targetSize;
     }
 }
