@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fe35ffd6e2d33b74fb9f974c987549c4
+guid: 77f858bc2dfe6be42af6f0e20e93a6df
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Squidge-idle-size2-sheet-v2_0
+      name: BoxHappySad_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 17
-        height: 11
+        x: 4
+        y: 132
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baea1d62c2d01b747b4d0f2fc85e1bc5
-      internalID: 139046748
+      spriteID: 7c437311468e8134c96fdc6814ee8378
+      internalID: 396850658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Squidge-idle-size2-sheet-v2_1
+      name: BoxHappySad_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 5
-        width: 17
-        height: 14
+        x: 4
+        y: 100
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5b54f8b55f308e40b83e95b142821d7
-      internalID: 392038823
+      spriteID: 676443843db597a4eae3baf23bd3c4cf
+      internalID: 244969480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxHappySad_2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 68
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68be32a4606404446a6f7ee445d91917
+      internalID: -500717214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxHappySad_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 36
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8b4be719e49bb4a8e25d06e0298c4b
+      internalID: 331815321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoxHappySad_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 144ab890d9b2739408994356304015b7
+      internalID: -231422637
       vertices: []
       indices: 
       edges: []
@@ -141,7 +204,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 57ab52b7df6d08b4bad0d7394002365f
+    spriteID: deb2287717d2bf545a3a1c217cc1a840
     internalID: 0
     vertices: []
     indices: 
@@ -149,8 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Squidge-idle-size2-sheet-v2_0: 139046748
-      Squidge-idle-size2-sheet-v2_1: 392038823
+      BoxHappySad_0: 396850658
+      BoxHappySad_1: 244969480
+      BoxHappySad_2: -500717214
+      BoxHappySad_3: 331815321
+      BoxHappySad_4: -231422637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

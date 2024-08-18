@@ -12,6 +12,11 @@ public class LoadLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (levelName.Equals("Current"))
+        {
+            levelName = SceneManager.GetActiveScene().name;
+        }
+
         button.onClick.AddListener(() => SwitchScene(levelName));
     }
 
