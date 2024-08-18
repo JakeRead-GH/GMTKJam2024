@@ -5,7 +5,7 @@ using UnityEngine;
 public class SizeController : MonoBehaviour
 {
     private Animator animator;
-    private BoxCollider collider;
+    private BoxCollider[] colliders;
     private SpriteRenderer spriteRenderer;
     private Rigidbody rb;
 
@@ -21,17 +21,17 @@ public class SizeController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        collider = GetComponent<BoxCollider>();
+        colliders = GetComponents<BoxCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
         
-        if (collider != null)
+        if (colliders.Length != 0)
         {
-            startingXScale = collider.size.x;
-            startingYScale = collider.size.y;
+            startingXScale = colliders[0].size.x;
+            startingYScale = colliders[0].size.y;
 
-            startingXPos = collider.center.x;
-            startingYPos = collider.center.y;
+            startingXPos = colliders[0].center.x;
+            startingYPos = colliders[0].center.y;
         }
     }
 
@@ -77,18 +77,18 @@ public class SizeController : MonoBehaviour
             rb.mass = masses[newSize - 1];
         }
 
-        if (collider != null)
+        foreach (BoxCollider collider in colliders)
         {
             Vector3 targetSize = new Vector3(startingXScale + SCALE_X[newSize - 1], startingYScale + SCALE_Y[newSize - 1], collider.size.z);
 
             StartCoroutine(
-                    SmoothColliderScaling(collider.size, targetSize, 0.25f));
+                    SmoothColliderScaling(collider, collider.size, targetSize, 0.25f));
 
             collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
         }
     }
 
-    IEnumerator SmoothColliderScaling(Vector3 initialSize, Vector3 targetSize, float duration)
+    IEnumerator SmoothColliderScaling(BoxCollider collider, Vector3 initialSize, Vector3 targetSize, float duration)
     {
         float elapsedTime = 0f;
 
