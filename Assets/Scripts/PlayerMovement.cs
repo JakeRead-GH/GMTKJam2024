@@ -9,37 +9,53 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    private float moveSpeed, jumpHeight;
+
+    private Vector2 moveInput;
+
+    public bool canJump;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        moveSpeed = 2f;
+        jumpHeight = 4f;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.Normalize();
+
         if (Input.GetKey(KeyCode.D))
         {
             animator.SetBool("Moving", true);
-            transform.Translate(new Vector3(0.006f, 0, 0), Space.World);
+            //transform.Translate(new Vector3(0.006f, 0, 0), Space.World);
             GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
             animator.SetBool("Moving", true);
-            transform.Translate(new Vector3(-0.006f, 0, 0), Space.World);
+            //transform.Translate(new Vector3(-0.006f, 0, 0), Space.World);
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
+            moveInput.x = 0;
             animator.SetBool("Moving", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, rb.velocity.z);
+
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && canJump == true)
         {
-            rb.AddForce(new Vector3(0, 4f, 0), ForceMode.Impulse);
+            canJump = false;
+            rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
         }
-        
     }
 }
