@@ -1592,6 +1592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squidge
       objectReference: {fileID: 0}
+    - target: {fileID: 1296324123009714534, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: m_Mass
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4638296137215685120, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.57
