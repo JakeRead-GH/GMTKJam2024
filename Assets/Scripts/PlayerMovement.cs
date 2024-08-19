@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private AudioClip[] sfx_steps;
     Rigidbody rb;
 
     private Animator animator;
@@ -14,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
 
     public bool canJump;
+
+    private bool isMoving = false;
+    private Coroutine footstepsCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -37,17 +41,32 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Moving", true);
             //transform.Translate(new Vector3(0.006f, 0, 0), Space.World);
             GetComponent<SpriteRenderer>().flipX = false;
+            if (!isMoving)
+            {
+                isMoving = true;
+                footstepsCoroutine = StartCoroutine(PlayFootsteps());
+            }
         }
         else if (Input.GetKey(KeyCode.A))
         {
             animator.SetBool("Moving", true);
             //transform.Translate(new Vector3(-0.006f, 0, 0), Space.World);
             GetComponent<SpriteRenderer>().flipX = true;
+            if (!isMoving)
+            {
+                isMoving = true;
+                footstepsCoroutine = StartCoroutine(PlayFootsteps());
+            }
         }
         else
         {
             moveInput.x = 0;
             animator.SetBool("Moving", false);
+            if (isMoving)
+            {
+                isMoving = false;
+                StopCoroutine(footstepsCoroutine);
+            }
         }
 
         rb.velocity = new Vector3(moveInput.x * moveSpeed, rb.velocity.y, rb.velocity.z);
@@ -56,6 +75,16 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+        }
+    }
+
+    // This coroutine plays the footstep sound effects while the player is moving
+    private IEnumerator PlayFootsteps()
+    {
+        while (isMoving && canJump)
+        {
+            SFX_Manager.instance.PlayRandomSFX(sfx_steps, transform, 3f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

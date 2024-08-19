@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed9089d85777d044b9c38c80e9cdef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx_steps:
+  - {fileID: 8300000, guid: 24dfbb213a0156946a3423fa4138d469, type: 3}
+  - {fileID: 8300000, guid: ab4f65a5a7bdc8345aacfd619d23a33c, type: 3}
   canJump: 0
 --- !u!114 &5217052834651579833
 MonoBehaviour:
