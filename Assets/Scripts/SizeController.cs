@@ -40,32 +40,6 @@ public class SizeController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //temp
-        if (Input.GetKey(KeyCode.Keypad1))
-        {
-            ChangeSize(1);
-        }
-        if (Input.GetKey(KeyCode.Keypad2))
-        {
-            ChangeSize(2);
-        }
-        if (Input.GetKey(KeyCode.Keypad3))
-        {
-            ChangeSize(3);
-        }
-        if (Input.GetKey(KeyCode.Keypad4))
-        {
-            ChangeSize(4);
-        }
-        if (Input.GetKey(KeyCode.Keypad5))
-        {
-            ChangeSize(5);
-        }
-    }
-
     public void ChangeSize(int newSize)
     {
         if (isInNoResizeZone && oldSize < newSize)
