@@ -229,7 +229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3926657642024473650, guid: 497117b76c5634c4e8521016c954f266, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.49592
+      value: 6.12
       objectReference: {fileID: 0}
     - target: {fileID: 3926657642024473650, guid: 497117b76c5634c4e8521016c954f266, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1592,7 +1592,7 @@ Transform:
   m_GameObject: {fileID: 782005409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.99, y: 4.25, z: -0.31034642}
+  m_LocalPosition: {x: 24.86, y: 4.25, z: -0.31034642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1785,7 +1785,7 @@ Transform:
   m_GameObject: {fileID: 815363697}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.49, y: 3.62, z: 0}
+  m_LocalPosition: {x: 24.33, y: 3.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2279,7 +2279,7 @@ Transform:
   m_GameObject: {fileID: 1384787753}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3, y: -1.4, z: 0}
+  m_LocalPosition: {x: 4.08, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2747,7 +2747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -3172,7 +3172,7 @@ Transform:
   m_GameObject: {fileID: 1877660747}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.97, y: 4.2482777, z: -0.31034642}
+  m_LocalPosition: {x: 26.78, y: 4.2482777, z: -0.31034642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3694,7 +3694,7 @@ PrefabInstance:
       insertIndex: 39
       addedObject: {fileID: 1877660748}
     - targetCorrespondingSourceObject: {fileID: 7715192636635291265, guid: a3f338813c59f40448aafcd8266f2d6d, type: 3}
-      insertIndex: 45
+      insertIndex: -1
       addedObject: {fileID: 80249124}
     - targetCorrespondingSourceObject: {fileID: 7715192636635291265, guid: a3f338813c59f40448aafcd8266f2d6d, type: 3}
       insertIndex: -1
