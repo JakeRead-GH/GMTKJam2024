@@ -32,7 +32,7 @@ public class CanvasController : MonoBehaviour
             Vector3 playerOnScreen = levelCamera.WorldToScreenPoint(activeSlider.transform.position);
 
             // The position is subtracted by a hard coded offset, feel free to make it more modular for different objects
-            sliderPosition.localPosition = playerOnScreen - new Vector3(396.2f, 216.4f, 0);
+            sliderPosition.localPosition = playerOnScreen - new Vector3(400f, 216.4f, 0);
         }
     }
 
