@@ -18,6 +18,8 @@ public class SizeController : MonoBehaviour
 
     private bool isInNoResizeZone = false;
 
+    private int oldSize = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,9 +66,8 @@ public class SizeController : MonoBehaviour
 
     public void ChangeSize(int newSize)
     {
-        if (isInNoResizeZone)
+        if (isInNoResizeZone && oldSize < newSize)
         {
-            Debug.Log("Cannot resize inside the No Resize Zone.");
             return; // Do not resize
         }
 
@@ -93,6 +94,8 @@ public class SizeController : MonoBehaviour
 
             collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
         }
+
+        oldSize = newSize;
     }
 
     private void OnTriggerEnter(Collider other)
