@@ -122,8 +122,10 @@ public class SizeController : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            collider.size = Vector3.Lerp(initialSize, targetSize, elapsedTime / duration);
+            Vector3 nextSize = Vector3.Lerp(initialSize, targetSize, elapsedTime / duration);
+            collider.size = nextSize;
             collider.center = Vector3.Lerp(initialPos, targetPos, elapsedTime / duration);
+            Physics.SyncTransforms();
             yield return null;
         }
 

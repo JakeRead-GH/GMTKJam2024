@@ -22,12 +22,15 @@ public class LevelComplete : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             audioSource.Play();
-            Invoke("LoadNextScene", levelTransitionDelay);
+            Time.timeScale = 0f; //Freezes the game
+            StartCoroutine(ResetSceneAfterDelay());
         }
     }
 
-    private void LoadNextScene()
+    private IEnumerator ResetSceneAfterDelay()
     {
+        yield return new WaitForSecondsRealtime(3); // Wait in real-time
+        Time.timeScale = 1f; // Unfreeze the game
         SceneManager.LoadScene(nextSceneName);
     }
 }
