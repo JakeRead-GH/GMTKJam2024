@@ -18,7 +18,6 @@ public class OneWayCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // solidCollider.enabled = false;
         if (IsPlayer(other) && IsPlayerAbove(other))
         {
             solidCollider.enabled = false;
@@ -27,7 +26,6 @@ public class OneWayCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //solidCollider.enabled = true;
         if (IsPlayer(other))
         {
             solidCollider.enabled = true;
