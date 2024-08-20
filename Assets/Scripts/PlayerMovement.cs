@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,14 +20,20 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving = false;
     private Coroutine footstepsCoroutine;
 
+    public GameObject groundCheck;
+    public float[] groundCheckOffsets = new float[5];
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
-        moveSpeed = 2f;
-        jumpHeight = 4f;
+        moveSpeed = 3f;
+        jumpHeight = 5f;
     }
 
     // Update is called once per frame
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
             rb.AddForce(new Vector3(0, jumpHeight, 0), ForceMode.Impulse);
+            audioSource.Play();
         }
     }
 
@@ -90,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetJumpHeight(int height)
     {
+        groundCheck.transform.localPosition = new Vector3(groundCheck.transform.localPosition.x, groundCheckOffsets[height - 1], groundCheck.transform.localPosition.z);
+
         switch (height)
         {
             case 1:
@@ -99,16 +109,16 @@ public class PlayerMovement : MonoBehaviour
                 jumpHeight = 2.5f;
                 break;
             case 3:
-                jumpHeight = 4;
+                jumpHeight = 5;
                 break;
             case 4:
                 jumpHeight = 6;
                 break;
             case 5:
-                jumpHeight = 20;
+                jumpHeight = 10;
                 break;
             default:
-                jumpHeight = 4;
+                jumpHeight = 5;
                 break;
         }
     }

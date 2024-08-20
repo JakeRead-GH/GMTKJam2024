@@ -3862,6 +3862,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: canJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: groundCheckOffsets.Array.data[0]
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: groundCheckOffsets.Array.data[1]
+      value: -0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: groundCheckOffsets.Array.data[2]
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: groundCheckOffsets.Array.data[3]
+      value: -1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+      propertyPath: groundCheckOffsets.Array.data[4]
+      value: -1.81
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
