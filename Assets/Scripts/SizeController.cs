@@ -16,6 +16,8 @@ public class SizeController : MonoBehaviour
     private float startingXScale, startingYScale;
     private float startingXPos, startingYPos;
 
+    public float colliderChangeTime = 0.25f;
+
     private bool isInNoResizeZone = false;
 
     private int oldSize = 3;
@@ -88,11 +90,10 @@ public class SizeController : MonoBehaviour
         foreach (BoxCollider collider in colliders)
         {
             Vector3 targetSize = new Vector3(startingXScale + SCALE_X[newSize - 1], startingYScale + SCALE_Y[newSize - 1], collider.size.z);
+            Vector3 targetPos = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
 
             StartCoroutine(
-                    SmoothColliderScaling(collider, collider.size, targetSize, 0.25f));
-
-            collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
+                    SmoothColliderScaling(collider, collider.size, collider.center, targetSize, targetPos, colliderChangeTime));
         }
 
         oldSize = newSize;
@@ -114,7 +115,7 @@ public class SizeController : MonoBehaviour
         }
     }
 
-    IEnumerator SmoothColliderScaling(BoxCollider collider, Vector3 initialSize, Vector3 targetSize, float duration)
+    IEnumerator SmoothColliderScaling(BoxCollider collider, Vector3 initialSize, Vector3 initialPos, Vector3 targetSize, Vector3 targetPos, float duration)
     {
         float elapsedTime = 0f;
 
@@ -122,9 +123,11 @@ public class SizeController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             collider.size = Vector3.Lerp(initialSize, targetSize, elapsedTime / duration);
+            collider.center = Vector3.Lerp(initialPos, targetPos, elapsedTime / duration);
             yield return null;
         }
 
         collider.size = targetSize;
+        collider.center = targetPos;
     }
 }
