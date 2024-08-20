@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class Audio_Manager : MonoBehaviour
 {
     [Header("Audio Sources")]
-    private List<AudioSource> musicSources;
+    private List<AudioSource> musicSources1_4;
+    private List<AudioSource> musicSources5_8;
+    private AudioSource menuMusicSource;
+    private AudioSource metalMusicSource;
 
     [Header("Background Music")]
-    public AudioClip[] musicLevels1_5;
-    public AudioClip[] musicLevels6_10; //  Need to implement this 
-
+    public AudioClip menuMusic;
+    public AudioClip metalMusic;
+    public AudioClip[] musicLevels1_4;
+    public AudioClip[] musicLevels5_8;
     public static Audio_Manager instance;
 
     private void Awake()
@@ -29,57 +33,145 @@ public class Audio_Manager : MonoBehaviour
 
     private void Start()
     {
-        musicSources = new List<AudioSource>();
+        musicSources1_4 = new List<AudioSource>();
+        musicSources5_8 = new List<AudioSource>();
 
-        for (int i = 0; i < musicLevels1_5.Length; i++)
-        {
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            source.clip = musicLevels1_5[i];
-            source.loop = true;
-            source.volume = (i == 0) ? 0.5f : 0.0f;
-            source.Play();
-            musicSources.Add(source);
-        }
+        menuMusicSource = gameObject.AddComponent<AudioSource>();
+        menuMusicSource.clip = menuMusic;
+        menuMusicSource.loop = true;
+        menuMusicSource.volume = 0.6f;
+        menuMusicSource.Play();
+
+        metalMusicSource = gameObject.AddComponent<AudioSource>();
+        metalMusicSource.clip = metalMusic;
+        metalMusicSource.loop = true;
+        metalMusicSource.volume = 0.0f;
+        metalMusicSource.Play();
+
         SceneManager.sceneLoaded += OnSceneLoaded;
         Debug.Log($"Starting in Scene: {SceneManager.GetActiveScene().name}");
-        Debug.Log($"Currently playing song: {musicLevels1_5[0].name}");
+        UpdateMusicVolume(SceneManager.GetActiveScene().name);
     }
 
-    // This is here to check when a new scene loads.
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateMusicVolume(scene.name);
-        Debug.Log($"Scene loaded: {scene.name}");
     }
 
-    // This will update music volume based on the scene name
     private void UpdateMusicVolume(string sceneName)
     {
-        int level = 0;
-
-        if (sceneName.StartsWith("Level"))
+        if (sceneName == "MainMenu")
         {
+            menuMusicSource.volume = 0.5f;
+            foreach (var source in musicSources1_4)
+            {
+                source.volume = 0.0f;
+            }
+            foreach (var source in musicSources5_8)
+            {
+                source.volume = 0.0f;
+            }
+        }
+        else if (sceneName.StartsWith("Level"))
+        {
+            int level = 0;
             if (int.TryParse(sceneName.Substring(5), out level))
             {
-                Debug.Log($"Changing song for Scene: {sceneName}");
+                Debug.Log($"Scene: {sceneName}");
+                menuMusicSource.volume = 0.0f;
 
-                for (int i = 0; i < musicSources.Count; i++)
+                if (level >= 1 && level <= 4)
                 {
-                    if (i == level - 1)
+                    InitializeMusicSources(musicSources1_4, musicLevels1_4);
+
+                    for (int i = 0; i < musicSources1_4.Count; i++)
                     {
-                        musicSources[i].volume = 0.5f;
-                        Debug.Log($"Now playing song: {musicLevels1_5[i].name}");
+                        if (i == level - 1)
+                        {
+                            musicSources1_4[i].volume = 0.5f;
+                            Debug.Log($"Song: {musicLevels1_4[i].name}");
+                        }
+                        else
+                        {
+                            musicSources1_4[i].volume = 0.0f;
+                        }
                     }
-                    else
+
+                    foreach (var source in musicSources5_8)
                     {
-                        musicSources[i].volume = 0.0f;
+                        source.volume = 0.0f;
+                    }
+                }
+                else if (level >= 5 && level <= 8)
+                {
+                    InitializeMusicSources(musicSources5_8, musicLevels5_8);
+
+                    for (int i = 0; i < musicSources5_8.Count; i++)
+                    {
+                        if (i == level - 5)
+                        {
+                            musicSources5_8[i].volume = 0.5f;
+                            Debug.Log($"Song: {musicLevels5_8[i].name}");
+                        }
+                        else
+                        {
+                            musicSources5_8[i].volume = 0.0f;
+                        }
+                    }
+
+                    foreach (var source in musicSources1_4)
+                    {
+                        source.volume = 0.0f;
                     }
                 }
             }
         }
-        else
+    }
+
+    private void InitializeMusicSources(List<AudioSource> musicSources, AudioClip[] musicClips)
+    {
+        if (musicSources.Count == 0)
         {
-            Debug.LogWarning("Scene name does not match expected format 'LevelX'.");
+            for (int i = 0; i < musicClips.Length; i++)
+            {
+                AudioSource source = gameObject.AddComponent<AudioSource>();
+                source.clip = musicClips[i];
+                source.loop = true;
+                source.volume = 0.0f;
+                source.Play();
+                musicSources.Add(source);
+            }
+        }
+    }
+
+    public void PlayMetalMusic()
+    {
+        metalMusicSource.volume = 0.5f;
+        Debug.Log("METAALLLLLLLL!");
+        MuteAllMusic();
+    }
+
+    private void MuteAllMusic()
+    {
+        if (menuMusicSource != null)
+        {
+            menuMusicSource.volume = 0.0f;
+        }
+
+        foreach (var source in musicSources1_4)
+        {
+            if (source != null && source.isPlaying)
+            {
+                source.volume = 0.0f;
+            }
+        }
+
+        foreach (var source in musicSources5_8)
+        {
+            if (source != null && source.isPlaying)
+            {
+                source.volume = 0.0f;
+            }
         }
     }
 }

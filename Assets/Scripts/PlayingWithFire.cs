@@ -36,6 +36,8 @@ public class PlayingWithFire : MonoBehaviour
         boxFlames.SetActive(true);
         reddishHue.SetActive(true);
 
+        Audio_Manager.instance.PlayMetalMusic();
+
         Invoke("BurnBoxes", 3);
     }
 
