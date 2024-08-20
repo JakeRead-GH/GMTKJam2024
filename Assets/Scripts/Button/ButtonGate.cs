@@ -25,8 +25,7 @@ public class ButtonGate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("sdfdsfdsfdsff");
-        sc.sprites = upSprites;
+        sc.sprites = downSprites;
 
         for (int i = 0; i < upSprites.Length; i++) 
         { 
@@ -37,34 +36,13 @@ public class ButtonGate : MonoBehaviour
             }
         }
 
-        //if(sr.sprite == upSprites[0])
-        //{
-
-        //} 
-        //else if(sr.sprite == upSprites[1])
-        //{
-
-        //}
-        //else if (sr.sprite == upSprites[2])
-        //{
-
-        //}
-        //else if (sr.sprite == upSprites[3])
-        //{
-
-        //}
-        //else if (sr.sprite == upSprites[4])
-        //{
-
-        //}
-
         gate.GateOpen();
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        sc.sprites = downSprites;
+        sc.sprites = upSprites;
 
         for (int i = 0; i < downSprites.Length; i++)
         {
