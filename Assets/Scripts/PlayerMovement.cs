@@ -87,4 +87,29 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    public void SetJumpHeight(int height)
+    {
+        switch (height)
+        {
+            case 1:
+                jumpHeight = 1.5f;
+                break;
+            case 2:
+                jumpHeight = 2.5f;
+                break;
+            case 3:
+                jumpHeight = 4;
+                break;
+            case 4:
+                jumpHeight = 6;
+                break;
+            case 5:
+                jumpHeight = 20;
+                break;
+            default:
+                jumpHeight = 4;
+                break;
+        }
+    }
 }
