@@ -8,7 +8,6 @@ public class SizeController : MonoBehaviour
     private BoxCollider[] colliders;
     private SpriteRenderer spriteRenderer;
     private Rigidbody rb;
-
     public Sprite[] sprites = new Sprite[5];
     public float[] masses = new float[5];
 
@@ -17,6 +16,8 @@ public class SizeController : MonoBehaviour
     private float startingXScale, startingYScale;
     private float startingXPos, startingYPos;
 
+    private bool isInNoResizeZone = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class SizeController : MonoBehaviour
         colliders = GetComponents<BoxCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
-        
+
         if (colliders.Length != 0)
         {
             startingXScale = colliders[0].size.x;
@@ -63,6 +64,12 @@ public class SizeController : MonoBehaviour
 
     public void ChangeSize(int newSize)
     {
+        if (isInNoResizeZone)
+        {
+            Debug.Log("Cannot resize inside the No Resize Zone.");
+            return; // Do not resize
+        }
+
         if (animator != null)
         {
             animator.SetInteger("Size", newSize);
@@ -85,6 +92,22 @@ public class SizeController : MonoBehaviour
                     SmoothColliderScaling(collider, collider.size, targetSize, 0.25f));
 
             collider.center = new Vector3(startingXPos + POS_X[newSize - 1], startingYPos + POS_Y[newSize - 1], collider.center.z);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NoResizeZone"))
+        {
+            isInNoResizeZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("NoResizeZone"))
+        {
+            isInNoResizeZone = false;
         }
     }
 
