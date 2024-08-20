@@ -710,14 +710,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
       propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
       propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2135715052}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
+      propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2135715060}
+    - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
       propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
+      propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
@@ -725,11 +733,23 @@ PrefabInstance:
       value: ChangeSize
       objectReference: {fileID: 0}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
+      propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetJumpHeight
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
       propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SizeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
+      propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
       propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342299464711797918, guid: 88d78902d768e5a47958bead95606d18, type: 3}
+      propertyPath: OnSliderChange.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6325356338307351638, guid: 88d78902d768e5a47958bead95606d18, type: 3}
@@ -2574,6 +2594,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   slider: {fileID: 1223453871}
+--- !u!114 &2135715060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7912105363764694414, guid: c62d58e8c0a5ce645aada994c1323e71, type: 3}
+  m_PrefabInstance: {fileID: 954266862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135715050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed9089d85777d044b9c38c80e9cdef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3876227905747513444
 PrefabInstance:
   m_ObjectHideFlags: 0

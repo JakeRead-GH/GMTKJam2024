@@ -15,6 +15,8 @@ public class ButtonGate : MonoBehaviour
     private SizeController sc;
     private SpriteRenderer sr;
 
+    private int objectsOnButton = 0;
+
     private void Start()
     {
         sc = GetComponent<SizeController>();
@@ -25,34 +27,44 @@ public class ButtonGate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        sc.sprites = downSprites;
+        objectsOnButton++;
 
-        for (int i = 0; i < upSprites.Length; i++) 
-        { 
-            if(sr.sprite == upSprites[i])
+        if (objectsOnButton == 1)
+        {
+            sc.sprites = downSprites;
+
+            for (int i = 0; i < upSprites.Length; i++)
             {
-                sr.sprite = downSprites[i];
-                break;
+                if (sr.sprite == upSprites[i])
+                {
+                    sr.sprite = downSprites[i];
+                    break;
+                }
             }
-        }
 
-        gate.GateOpen();
+            gate.GateOpen();
+        }
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        sc.sprites = upSprites;
+        objectsOnButton--;
 
-        for (int i = 0; i < downSprites.Length; i++)
+        if (objectsOnButton == 0)
         {
-            if (sr.sprite == downSprites[i])
-            {
-                sr.sprite = upSprites[i];
-                break;
-            }
-        }
+            sc.sprites = upSprites;
 
-        gate.GateClose();
+            for (int i = 0; i < downSprites.Length; i++)
+            {
+                if (sr.sprite == downSprites[i])
+                {
+                    sr.sprite = upSprites[i];
+                    break;
+                }
+            }
+
+            gate.GateClose();
+        }        
     }
 }
