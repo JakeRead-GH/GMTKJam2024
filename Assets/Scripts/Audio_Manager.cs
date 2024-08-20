@@ -10,12 +10,14 @@ public class Audio_Manager : MonoBehaviour
     private List<AudioSource> musicSources5_8;
     private AudioSource menuMusicSource;
     private AudioSource metalMusicSource;
+    private AudioSource burnedMenuMusicSource;
 
     [Header("Background Music")]
     public AudioClip menuMusic;
     public AudioClip metalMusic;
     public AudioClip[] musicLevels1_4;
     public AudioClip[] musicLevels5_8;
+    public AudioClip burnedMenuMusic;
     public static Audio_Manager instance;
 
     private void Awake()
@@ -33,6 +35,13 @@ public class Audio_Manager : MonoBehaviour
 
     private void Start()
     {
+
+        burnedMenuMusicSource = gameObject.AddComponent<AudioSource>();
+        burnedMenuMusicSource.clip = burnedMenuMusic;
+        burnedMenuMusicSource.loop = true;
+        burnedMenuMusicSource.volume = 0.0f;  // Start muted
+        burnedMenuMusicSource.Play();
+
         musicSources1_4 = new List<AudioSource>();
         musicSources5_8 = new List<AudioSource>();
 
@@ -63,6 +72,20 @@ public class Audio_Manager : MonoBehaviour
         if (sceneName == "MainMenu")
         {
             menuMusicSource.volume = 0.5f;
+            foreach (var source in musicSources1_4)
+            {
+                source.volume = 0.0f;
+            }
+            foreach (var source in musicSources5_8)
+            {
+                source.volume = 0.0f;
+            }
+        }
+        else if (sceneName == "BurnedMenu")
+        {
+            burnedMenuMusicSource.volume = 0.5f;
+            menuMusicSource.volume = 0.0f;
+            metalMusicSource.volume = 0.0f;
             foreach (var source in musicSources1_4)
             {
                 source.volume = 0.0f;

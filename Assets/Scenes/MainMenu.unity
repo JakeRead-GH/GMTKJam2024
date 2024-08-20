@@ -1801,6 +1801,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 5c7ea7b0b1439404fb9c6d38ae0557f6, type: 3}
     - target: {fileID: -1441050608465757793, guid: 21e3e617309f0bb41af9263be519d4ef, type: 3}
+      propertyPath: metalMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 92e2417ebe5404f42a3ca1b52904bcea, type: 3}
+    - target: {fileID: -1441050608465757793, guid: 21e3e617309f0bb41af9263be519d4ef, type: 3}
+      propertyPath: burnedMenuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: e7cf0bcc7bc11b14989645703be86073, type: 3}
+    - target: {fileID: -1441050608465757793, guid: 21e3e617309f0bb41af9263be519d4ef, type: 3}
       propertyPath: musicLevels1_4.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2786,7 +2794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.066711, y: 13.602112}
+  m_AnchoredPosition: {x: 10.066772, y: 13.602112}
   m_SizeDelta: {x: -455.0197, y: -97.6242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706141973
